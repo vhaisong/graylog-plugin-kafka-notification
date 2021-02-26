@@ -7,16 +7,12 @@ Add a kafka notification to send kafka messages if you have a log that meets the
 
 # KafkaNotification Plugin for Graylog
 
-[![Build Status](https://travis-ci.org/https://github.com/qingmg/graylog-plugin-kafka-notification.git.svg?branch=master)](https://travis-ci.org/https://github.com/qingmg/graylog-plugin-kafka-notification.git)
-
-__Use this paragraph to enter a description of your plugin.__
-
-**Required Graylog version:** 2.0 and later
+**Required Graylog version:** 4.0.1 and later
 
 Installation
 ------------
 
-[Download the plugin](https://github.com/https://github.com/qingmg/graylog-plugin-kafka-notification.git/releases)
+[Download the plugin](https://github.com/qingmg/graylog-plugin-kafka-notification/releases)
 and place the `.jar` file in your Graylog plugin directory. The plugin directory
 is the `plugins/` folder relative from your `graylog-server` directory by default
 and can be configured in your `graylog.conf` file.
@@ -29,37 +25,24 @@ Development
 You can improve your development experience for the web interface part of your plugin
 dramatically by making use of hot reloading. To do this, do the following:
 
+* `git clone https://github.com/qingmg/graylog-plugin-kafka-notification.git`
 * `git clone https://github.com/Graylog2/graylog2-server.git`
-* `cd graylog2-server/graylog2-web-interface`
-* `ln -s $YOURPLUGIN plugin/`
+* `cd graylog2-server/graylog2-web-interface/packages/graylog-web-plugin`
+* `yarn install`
+* `cd ../../`
+* `sed -i 's/127.0.0.1/<your graylog ip>/' config.js`
 * `npm install && npm start`
+
+__If there is an error with a code like `the network is offline, Origin is not allowed by Access-Control-Allow-Origin`, you need to turn on the cros configuration of graylog__
+
+* Enter the machine where you installed graylog
+* `cd $GRAYLOG_HOME/data/config`
+* `vim graylog.conf`
+    * `http_enable_cors = true`
 
 Usage
 -----
 
-__Use this paragraph to document the usage of your plugin__
+Alerts - Notifications - Create
 
-
-Getting started
----------------
-
-This project is using Maven 3 and requires Java 8 or higher.
-
-* Clone this repository.
-* Run `mvn package` to build a JAR file.
-* Optional: Run `mvn jdeb:jdeb` and `mvn rpm:rpm` to create a DEB and RPM package respectively.
-* Copy generated JAR file in target directory to your Graylog plugin directory.
-* Restart the Graylog.
-
-Plugin Release
---------------
-
-We are using the maven release plugin:
-
-```
-$ mvn release:prepare
-[...]
-$ mvn release:perform
-```
-
-This sets the version numbers, creates a tag and pushes to GitHub. Travis CI will build the release artifacts and upload to GitHub automatically.
+Select the value of Notification Type as Kafka Notification
