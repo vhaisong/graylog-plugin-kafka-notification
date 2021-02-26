@@ -16,6 +16,7 @@
  */
 package cn.qingmg.graylog.plugin.kafka.notification;
 
+import cn.qingmg.graylog.plugin.kafka.notification.entity.KafkaEventNotificationConfig;
 import org.graylog2.plugin.PluginConfigBean;
 import org.graylog2.plugin.PluginModule;
 
@@ -28,7 +29,7 @@ import java.util.Set;
 public class KafkaNotificationModule extends PluginModule {
     /**
      * Returns all configuration beans required by this plugin.
-     *
+     * <p>
      * Implementing this method is optional. The default method returns an empty {@link Set}.
      */
     @Override
@@ -56,5 +57,6 @@ public class KafkaNotificationModule extends PluginModule {
          *
          * addConfigBeans();
          */
+        addNotificationType(KafkaEventNotificationConfig.TYPE_NAME, KafkaEventNotificationConfig.class, KafkaNotification.class, KafkaNotification.Factory.class);
     }
 }
